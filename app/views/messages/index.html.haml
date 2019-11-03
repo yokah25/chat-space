@@ -17,7 +17,7 @@
             メンバー名
       .right-header
         .right-header__button
-          Edit
+          = link_to 'Edit', edit_group_path(@group)
     .messages
       = render @messages      
     .form
