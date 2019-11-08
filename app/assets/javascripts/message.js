@@ -1,3 +1,4 @@
+$(document).on('turbolinks:load', function() {
 $(function(){
   
   function buildMessage(message){
@@ -53,9 +54,8 @@ $(function(){
   });
 
   var reloadMessages = function() {
-    if (location.href.match(/\/groups\/\d+\/messages/)){
+    if (window.location.href.match(/\/groups\/\d+\/messages/)){
       last_message_id = $('.message').last().data("id");
-
       $.ajax({
         url: 'api/messages',
         type: 'get',
@@ -65,16 +65,20 @@ $(function(){
 
       .done(function(messages) {
         var insertHTML = '';
-        messages.forEach(function(message){
-          inserHTML = buildMessage(message);
-          $(".messages").append(insertHTML);
-        });
-        $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');
+        if (messages.length !== 0) {
+          messages.forEach(function(message){
+            inserHTML = buildMessage(message);
+            $(".messages").append(insertHTML);
+          });
+          $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight});
+        }
       })
+
       .fail(function() {
         alert('error');
       });
     }
   };
   setInterval(reloadMessages, 5000);
+});
 });

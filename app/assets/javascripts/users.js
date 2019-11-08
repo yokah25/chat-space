@@ -1,3 +1,4 @@
+$(document).on('turbolinks:load', function() {
 $(function() {
   function addUser(user) {
     let html = `
@@ -68,4 +69,5 @@ $(function() {
       .parent()
       .remove();
   });
+});
 });
