@@ -67,9 +67,9 @@ $(function(){
         var insertHTML = '';
         if (messages.length !== 0) {
           messages.forEach(function(message){
-            inserHTML = buildMessage(message);
-            $(".messages").append(insertHTML);
-          });
+            insertHTML = buildMessage(message);
+            $('.messages').append(insertHTML);
+          })
           $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight});
         }
       })
@@ -77,8 +77,8 @@ $(function(){
       .fail(function() {
         alert('error');
       });
-    }
-  };
+    };
+  }
   setInterval(reloadMessages, 5000);
 });
 });
